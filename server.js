@@ -1,4 +1,4 @@
-// server.js - test
+// server.js - test2
 // where your node app starts
 
 // init project
