@@ -4,7 +4,9 @@
 // init project
 var express = require('express');
 var app = express();
-require('dotenv').config()
+const dotenv = require('dotenv').config() //Change for production, only load on dev
+console.log(dotenv)
+console.log(process.env.LISTEN_PORT)
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
