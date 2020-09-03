@@ -5,7 +5,7 @@
 var express = require('express');
 var app = express();
 const dotenv = require('dotenv').config() //Change for production, only load on dev
-console.log(dotenv)
+
 console.log(process.env.LISTEN_PORT)
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
@@ -27,9 +27,15 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+//Timestamp api
+app.get("/api/timestamp", (req, res) => {
+  const currentDate = new Date()
+  res.json({"unix": currentDate.getTime(), "utc": currentDate.toUTCString()})
+})
+
 
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
+var listener = app.listen(process.env.LISTEN_PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
