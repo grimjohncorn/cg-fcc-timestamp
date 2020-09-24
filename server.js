@@ -33,6 +33,11 @@ app.get("/api/timestamp", (req, res) => {
 
 app.get("/api/timestamp/:date", (req, res) => {
   const checkDate = Date.parse(req.params.date)
+  console.log(typeof req.params.date)
+
+  //use regex to test for only 0-9 numbers
+  
+
 
   if(checkDate) {
     //Valid Date
