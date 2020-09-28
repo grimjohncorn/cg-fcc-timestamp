@@ -37,18 +37,32 @@ app.get("/api/timestamp/:date", (req, res) => {
 
   //use regex to test for only 0-9 numbers, indicating unix timestamp as input
   const regex = /^\d+$/g
-  const date = regex.test(req.params.date) ? parseInt(req.params.date) : req.params.date
+  const dateFormat = regex.test(req.params.date) ? parseInt(req.params.date) : req.params.date
 
-  const checkDate = Date.parse(req.params.date)
+  console.log('date typeof: ' + typeof dateFormat)
+  
+  const date = new Date(dateFormat)
+  console.log(date)
 
-  if(checkDate) {
+  if(date!='Invalid Date') {
     //Valid Date
-    const date = new Date(checkDate)
     res.json({"unix": date.getTime(), "utc": date.toUTCString()})
   } else {
     //Invalid Date
     res.json({"error": "Invalid Date"})
   }
+  
+  //const checkDate = Date.parse(req.params.date)
+  
+
+  // if(checkDate) {
+  //   //Valid Date
+  //   const dateOutput = new Date(checkDate)
+  //   res.json({"unix": dateOutput.getTime(), "utc": dateOutput.toUTCString()})
+  // } else {
+  //   //Invalid Date
+  //   res.json({"error": "Invalid Date"})
+  // }
 
 
   
